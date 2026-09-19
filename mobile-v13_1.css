@@ -1,0 +1,108 @@
+/* OPTIMISATION HUMAINE — V13.1 mobile routine refinement */
+@media (max-width:760px) and (orientation:portrait){
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] .topbar{display:none!important}
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] body{overscroll-behavior-y:none}
+
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView{
+    max-width:none;width:100%;
+    padding:max(8px,env(safe-area-inset-top)) 10px 8px;
+    height:var(--routine-vh,100dvh);overflow:hidden;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .routine{
+    min-height:0;height:100%;margin:0;
+  }
+
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .routineTop{
+    display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:8px;margin:0;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .routineTop .kicker{
+    font-size:9px;line-height:1.2;letter-spacing:.12em;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .routineTop h2{
+    font-size:clamp(27px,8.2vw,35px);line-height:.96;letter-spacing:-.045em;margin:0;max-width:100%;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .routineTopActions{
+    flex-direction:row;align-items:center;align-self:center;gap:5px;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .badge{
+    padding:7px 9px;border-radius:10px;font-size:13px;line-height:1;white-space:nowrap;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .exitRoutine{
+    min-width:46px;padding:7px 8px;border-radius:10px;font-size:0;line-height:1;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .exitRoutine::after{
+    content:"Réf.";font-size:11px;font-weight:850;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .progress{
+    height:4px;margin:8px 0 8px;
+  }
+
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .mobileRoutineHUD{
+    display:grid;grid-template-columns:minmax(88px,.72fr) minmax(82px,.72fr) minmax(0,1.25fr);gap:6px;margin:0 0 8px;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .mobileHudDetails{display:contents}
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .mobileHudCurrent,
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .mobileHudDetails>div{
+    min-height:52px;padding:7px 9px;border-radius:11px;display:flex;flex-direction:column;justify-content:center;
+    background:linear-gradient(180deg,rgba(15,29,25,.92),rgba(9,19,16,.92));
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .mobileRoutineHUD span{
+    font-size:7.5px;letter-spacing:.095em;margin-bottom:3px;white-space:nowrap;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .mobileHudCurrent b{
+    font-size:29px;line-height:.88;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .mobileHudDetails b{
+    font-size:11px;line-height:1.15;
+  }
+
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .routineGrid{
+    display:block;overflow:visible;min-height:0;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .rMedia{
+    width:100%;height:clamp(300px,calc(var(--routine-vh,100dvh) - 250px),68dvh);min-height:0;aspect-ratio:auto;
+    border-radius:16px;margin:0;background:#050a08;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .rMedia video,
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .rMedia img{
+    width:100%;height:100%;object-fit:contain!important;
+  }
+
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .rPanel{
+    position:fixed;left:10px;right:10px;bottom:max(8px,env(safe-area-inset-bottom));z-index:35;
+    height:auto;min-height:0;padding:8px;gap:7px;border-radius:16px;overflow:visible;
+    background:rgba(7,16,14,.965);backdrop-filter:blur(18px) saturate(1.15);
+    box-shadow:0 14px 44px rgba(0,0,0,.46),inset 0 1px 0 rgba(255,255,255,.035);
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .rPanel>div:first-child{display:none}
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .rPanel>div:last-child{min-width:0}
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView #rCue{
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+    margin:0 2px 7px;padding:0;font-size:11px;line-height:1.28;color:#cbd7d1;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .controls{
+    position:static!important;display:grid;grid-template-columns:48px minmax(0,1fr) 48px 72px;gap:6px;
+    margin:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;backdrop-filter:none;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .controls button{
+    min-height:48px;padding:0 8px;border-radius:12px;font-size:14px;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView #prevBtn,
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView #nextBtn{font-size:0}
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView #prevBtn::before{content:"←";font-size:23px;line-height:1}
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView #nextBtn::before{content:"→";font-size:23px;line-height:1}
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView #soundBtn{font-size:10px;padding:0 4px;white-space:nowrap}
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .shortcutHint{display:none!important}
+
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .resumeNotice{
+    position:fixed;left:10px;right:10px;top:max(10px,env(safe-area-inset-top));z-index:60;
+  }
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView.routineFinished{
+    height:auto;min-height:var(--routine-vh,100dvh);overflow:auto;padding-bottom:28px;
+  }
+}
+@media (max-width:390px) and (orientation:portrait){
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .routineTop h2{font-size:26px}
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .mobileRoutineHUD{grid-template-columns:84px 80px minmax(0,1fr)}
+  html[data-app-mode="routine"][data-routine-layout="phone-portrait"] #routineView .rMedia{height:clamp(285px,calc(var(--routine-vh,100dvh) - 245px),66dvh)}
+}
