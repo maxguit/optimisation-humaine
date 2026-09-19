@@ -6,6 +6,7 @@ on:
     paths:
       - "OPTIMISATION_HUMAINE_V13_PWA.part-*"
       - ".github/workflows/pages.yml"
+      - "mobile-v13_1.css"
   workflow_dispatch:
 
 permissions:
@@ -49,6 +50,21 @@ jobs:
           mkdir -p unpacked _site
           unzip -q site.zip -d unpacked
           cp -a unpacked/OPTIMISATION_HUMAINE_V13_PWA/. _site/
+          cp mobile-v13_1.css _site/mobile-v13_1.css
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path("_site/index.html")
+          s=p.read_text()
+          tag='<link rel="stylesheet" href="mobile-v13_1.css?v=131">'
+          if tag not in s:
+              s=s.replace("</head>", tag+"\n</head>")
+          p.write_text(s)
+          sw=Path("_site/service-worker.js")
+          t=sw.read_text()
+          t=t.replace('const VERSION="oh-v13-1"', 'const VERSION="oh-v13-1-mobile"')
+          t=t.replace('"./manifest.webmanifest"', '"./manifest.webmanifest","./mobile-v13_1.css"')
+          sw.write_text(t)
+          PY
           touch _site/.nojekyll
           test -f _site/index.html
           test -f _site/manifest.webmanifest
