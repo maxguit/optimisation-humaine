@@ -1,0 +1,58 @@
+name: Deploy routine to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "OPTIMISATION_HUMAINE_V13_PWA.part-*"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Reassemble and validate site package
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f OPTIMISATION_HUMAINE_V13_PWA.part-00
+          test -f OPTIMISATION_HUMAINE_V13_PWA.part-01
+          cat OPTIMISATION_HUMAINE_V13_PWA.part-00 OPTIMISATION_HUMAINE_V13_PWA.part-01 > site.zip
+          echo "c163576a7f4a1194c9aff2e8a4be8858d56e3d9a3defbb46bcbc53aee73fc10f  site.zip" | sha256sum -c -
+          rm -rf unpacked _site
+          mkdir -p unpacked _site
+          unzip -q site.zip -d unpacked
+          cp -a unpacked/OPTIMISATION_HUMAINE_V13_PWA/. _site/
+          touch _site/.nojekyll
+          test -f _site/index.html
+          test -f _site/manifest.webmanifest
+          test -f _site/service-worker.js
+          test "$(find _site/media -type f -name '*.mp4' | wc -l)" -eq 45
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
